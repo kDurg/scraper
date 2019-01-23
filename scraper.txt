@@ -1,0 +1,20 @@
+standard / page 
+    links for saved articles, articles JSON, scrape latest, Clear all notes
+        unsolved/ saved pages are handlebars
+    
+controllers 
+    artclices - interfacing with articles
+models
+    article
+    notesindex
+
+Routes - Anything used by Ajax call
+    index.js - import router and apiRoutes and viewRoutes
+        router.use ("/api", apiRoutes)
+        '' ("/", viewRoutes)
+        module.exports = router
+
+    api
+        index.js    router.use("articles", articleRoutes)
+        '' router.use(noteRoutes)
+

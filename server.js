@@ -1,33 +1,24 @@
 var express = require("express");
-var logger = require("morgan");
 var mongoose = require("mongoose");
-var cheerio = require("cheerio");
 var exphbs = require("express-handlebars");
+var PORT = process.env.PORT || 3000
 
-var db = require("./models");
-var PORT = 3000;
 var app = express();
+var routes = require("./routes");
 
-
-
-app.use(logger("dev"));
-
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
-
-var router = require("./controllers/api.js");
-app.use(router);
-
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI); // Heroku deployment
-
-
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-app.listen(PORT, function () {
-    console.log(`This application is running on port: ${PORT}`);
+app.use(routes);
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper"
+
+mongoose.connect(MONGODB_URI);
+
+applicationCache.addEventListener(PORT, function() {
+    console.log("Port: " + PORT)
 });

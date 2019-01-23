@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    // event handler for deleting a note
     $(".delete-btn").click(function (event) {
         event.preventDefault();
-        const id = $(this).attr("data");
+        var id = $(this).attr("data");
         $.ajax(`/remove/${id}`, {
             type: "PUT"
         }).then(function(){
@@ -10,10 +9,9 @@ $(document).ready(function () {
         })
     });
     
-    // event handler for opening the note modal
     $(".note-btn").click(function (event) {
         event.preventDefault();
-        const id = $(this).attr("data");
+        var id = $(this).attr("data");
         $('#article-id').text(id);
         $('#save-note').attr('data', id);
         $.ajax(`/articles/${id}`, {
@@ -34,11 +32,10 @@ $(document).ready(function () {
         $('#note-modal').modal('toggle');
     });
 
-    // $('.btn-deletenote').click(function (event) {})
     $(document).on('click', '.btn-deletenote', function (){
             event.preventDefault();
             console.log($(this).attr("data"))
-            const id = $(this).attr("data");
+            var id = $(this).attr("data");
             console.log(id);
             $.ajax(`/note/${id}`, {
                 type: "DELETE"
@@ -49,8 +46,8 @@ $(document).ready(function () {
 
     $("#save-note").click(function (event) {
         event.preventDefault();
-        const id = $(this).attr('data');
-        const noteText = $('#note-input').val().trim();
+        var id = $(this).attr('data');
+        var noteText = $('#note-input').val().trim();
         $('#note-input').val('');
         $.ajax(`/note/${id}`, {
             type: "POST",
@@ -63,12 +60,12 @@ $(document).ready(function () {
 
     $(".save-btn").click(function(event) {
         event.preventDefault();
-        const button = $(this);
-        const id = button.attr("id");
+        var button = $(this);
+        var id = button.attr("id");
         $.ajax(`/save/${id}`, {
             type: "PUT"
         }).then(function() {
-            const alert = `
+            var alert = `
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
             Your note has been saved!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
